@@ -22,7 +22,7 @@ namespace AllocationsServer
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, ILogger log)
         {
             // Add framework services.
             services.AddMvc();
@@ -39,7 +39,7 @@ namespace AllocationsServer
                     BaseAddress = new Uri(Configuration.GetValue<string>("REGISTRATION_SERVER_ENDPOINT"))
                 };
 
-                return new ProjectClient(httpClient);
+                return new ProjectClient(httpClient, log);
             });
         }
 
