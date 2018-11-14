@@ -211,7 +211,10 @@ workflows:
   version: 2
   deployment-pipeline:
     jobs:
-      - build
+      - build:
+          branches:
+            only:
+              - circuit-breaker-work
       - deployAllocations:
           requires:
           - build
